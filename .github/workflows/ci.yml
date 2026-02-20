@@ -50,7 +50,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Unit tests (unittest)
-        run: python -m unittest discover -s tests -p "test_*.py" -q
+        run: python -m unittest discover -s tests -p "test_*.py" -v 2>&1 | tee test.results.txt
 
   build:
     runs-on: ubuntu-latest
@@ -68,4 +68,12 @@ jobs:
         with:
           name: dist-${{ github.run_number }}
           path: dist/
+          retention-days: 7
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test.results.txt
           retention-days: 7
