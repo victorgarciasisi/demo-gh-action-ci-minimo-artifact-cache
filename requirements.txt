@@ -1,0 +1,4 @@
+# Dependencias mínimas para la demo de caché 
+# Nota: el proyecto demo usa unittest y no requiere librerías externas.
+# Incluimos una dependencia pequeña para que se vea el efecto de instalación/caché.
+requests==2.31.0
